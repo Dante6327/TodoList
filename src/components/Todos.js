@@ -73,6 +73,7 @@ function Todos() {
     setItem([
       ...item,
       {
+        id: cnt,
         key: cnt,
         text: document.querySelector(`input[name='text']`).value,
         checked: false,
@@ -96,7 +97,9 @@ function Todos() {
             placeholder="enter todo"
           />
           <AddTodoBtn onClick={addBtn}>+</AddTodoBtn>
-          <TodoItemBox>{<TodoItem item={item} />}</TodoItemBox>
+          <TodoItemBox>
+            {<TodoItem item={item} setItem={setItem} />}
+          </TodoItemBox>
         </TodoTitle>
       </TodoBody>
     </Background>
