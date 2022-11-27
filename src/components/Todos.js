@@ -20,9 +20,39 @@ const TodoBody = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   overflow: hidden;
-  @media screen and (max-width: 800px) {
-    width: 600px;
+  /* 아이폰 SE */
+
+  @media screen and (min-width: 320px) and (max-width: 374px) {
+    width: 300px;
+    height: 500px;
+  }
+
+  /* 스마트폰 모바일(세로) */
+
+  @media screen and (min-width: 375px) and (max-width: 479px) {
+    width: 375px;
+    height: 625px;
+  }
+
+  /* 스마트폰 모바일(가로) */
+
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    width: 480px;
     height: 800px;
+  }
+
+  /* 태블릿, 아이패드 */
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    width: 768px;
+    height: 1500px;
+  }
+
+  /* 아이패드 프로 */
+
+  @media screen and (min-width: 1024px) and (max-width: 1366px) {
+    width: 1024px;
+    height: 1506px;
   }
 `;
 
@@ -57,8 +87,38 @@ const TodoItemBox = styled.div`
   background-color: #eee8aa;
   border: 2px solid black;
   border-radius: 10px;
-  @media screen and (max-width: 800px) {
+  /* 아이폰 SE */
+
+  @media screen and (min-width: 320px) and (max-width: 374px) {
+    margin: 20px 20px;
+    height: 330px;
+  }
+
+  /* 스마트폰 모바일(세로) */
+
+  @media screen and (min-width: 375px) and (max-width: 479px) {
+    margin: 20px 30px;
+    height: 450px;
+  }
+
+  /* 스마트폰 모바일(가로) */
+
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    margin: 20px 30px;
     height: 600px;
+  }
+
+  /* 태블릿, 아이패드 */
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    margin: 20px 50px;
+    height: 1280px;
+  }
+
+  /* 아이패드 프로 */
+
+  @media screen and (min-width: 1024px) and (max-width: 1366px) {
+    height: 1300px;
   }
 `;
 
@@ -78,6 +138,33 @@ const TodoDeleteAll = styled.button`
   position: absolute;
   right: 75px;
   bottom: 45px;
+  @media screen and (min-width: 320px) and (max-width: 374px) {
+    right: 20px;
+    bottom: 15px;
+  }
+
+  /* 스마트폰 모바일(세로) */
+
+  @media screen and (min-width: 375px) and (max-width: 479px) {
+    right: 30px;
+    bottom: 20px;
+  }
+
+  /* 스마트폰 모바일(가로) */
+
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    right: 30px;
+  }
+
+  /* 태블릿, 아이패드 */
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+  }
+
+  /* 아이패드 프로 */
+
+  @media screen and (min-width: 1024px) and (max-width: 1366px) {
+  }
 `;
 
 let cnt = 1;
