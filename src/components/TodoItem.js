@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const TodoItemDiv = styled.div`
@@ -54,18 +54,44 @@ const ItemDeleteBtn = styled.button`
   }
 `;
 
+const ItemUpdateBtn = styled(ItemDeleteBtn)`
+  margin: 0;
+`;
+
 const deleteTodo = (key, item, setItem) => {
   setItem(item.filter((i) => i.key !== key));
 };
 
-function TodoItem({ item, setItem }) {
+const updateTodo = (setIsUpdate) => {
+  setIsUpdate((prev) => !prev);
+};
+
+/**
+ *
+ * @param item : 할 일 목록
+ * @param setItem : 할 일 목록 수정 함수
+ * @param setIsUpdate : 수정 팝업 노출 여부
+ * @param setTodoId : 수정할 Item Key 값
+ * @returns
+ */
+function TodoItem({ item, setItem, setIsUpdate, setTodoId }) {
   return item.map((i) => (
-    <TodoItemDiv id={i.key} key={i.key}>
+    <TodoItemDiv key={i.key} id={i.key}>
       <ItemCheckBox type="checkbox" />
       {i.text}
-      <ItemDeleteBtn onClick={() => deleteTodo(i.key, item, setItem)}>
-        삭제
-      </ItemDeleteBtn>
+      <div>
+        <ItemUpdateBtn
+          onClick={() => {
+            updateTodo(setIsUpdate);
+            setTodoId(i.key);
+          }}
+        >
+          수정
+        </ItemUpdateBtn>
+        <ItemDeleteBtn onClick={() => deleteTodo(i.key, item, setItem)}>
+          삭제
+        </ItemDeleteBtn>
+      </div>
     </TodoItemDiv>
   ));
 }

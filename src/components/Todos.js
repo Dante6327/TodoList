@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import TodoItem from "./TodoItem";
+import UpdateTodo from "./UpdateTodo";
 
 const Background = styled.div`
   background-color: #fafad2;
@@ -19,6 +20,10 @@ const TodoBody = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   overflow: hidden;
+  @media screen and (max-width: 800px) {
+    width: 600px;
+    height: 800px;
+  }
 `;
 
 const TodoTitle = styled.div`
@@ -29,7 +34,7 @@ const TodoTitle = styled.div`
 `;
 
 const AddTodoInput = styled.input`
-  width: 600px;
+  width: 80%;
   height: 30px;
   border: 2px solid black;
   border-radius: 8px;
@@ -52,12 +57,35 @@ const TodoItemBox = styled.div`
   background-color: #eee8aa;
   border: 2px solid black;
   border-radius: 10px;
+  @media screen and (max-width: 800px) {
+    height: 600px;
+  }
+`;
+
+const TodoDeleteAll = styled.button`
+  width: 90px;
+  height: 30px;
+  background-color: #eee8aa;
+
+  border: 3px solid black;
+  border-radius: 10px;
+  &:hover {
+    background-color: #bc8f8f;
+  }
+  &:active {
+    background-color: #8b0000;
+  }
+  position: absolute;
+  right: 75px;
+  bottom: 45px;
 `;
 
 let cnt = 1;
 function Todos() {
   const [textVal, setTextVal] = useState("");
   const [item, setItem] = useState([]);
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [todoId, setTodoId] = useState("");
 
   /**
    * input 변경시 value 설정
@@ -98,10 +126,26 @@ function Todos() {
           />
           <AddTodoBtn onClick={addBtn}>+</AddTodoBtn>
           <TodoItemBox>
-            {<TodoItem item={item} setItem={setItem} />}
+            {
+              <TodoItem
+                item={item}
+                setItem={setItem}
+                setIsUpdate={setIsUpdate}
+                setTodoId={setTodoId}
+              />
+            }
           </TodoItemBox>
         </TodoTitle>
+        <TodoDeleteAll onClick={() => setItem([])}>모두 삭제</TodoDeleteAll>
       </TodoBody>
+      {isUpdate && (
+        <UpdateTodo
+          item={item}
+          setItem={setItem}
+          setIsUpdate={setIsUpdate}
+          todoId={todoId}
+        />
+      )}
     </Background>
   );
 }
